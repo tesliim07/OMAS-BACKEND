@@ -618,11 +618,16 @@
       },
       "ServiceCreateDto": {
         "required": [
+          "serviceDescription",
           "serviceName"
         ],
         "type": "object",
         "properties": {
           "serviceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceDescription": {
             "type": "string",
             "nullable": true
           },
@@ -636,6 +641,7 @@
       },
       "ServiceReadDto": {
         "required": [
+          "serviceDescription",
           "serviceName"
         ],
         "type": "object",
@@ -645,6 +651,10 @@
             "format": "uuid"
           },
           "serviceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceDescription": {
             "type": "string",
             "nullable": true
           },

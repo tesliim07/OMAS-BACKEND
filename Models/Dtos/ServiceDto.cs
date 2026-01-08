@@ -3,6 +3,7 @@
     public class ServiceCreateDto
     {
         public required string ServiceName { get; set; }
+        public required string ServiceDescription { get; set; }
         public int? DurationInMinutes { get; set; }
     }
 
@@ -10,6 +11,7 @@
     {
         public Guid ServiceId { get; set; }
         public required string ServiceName { get; set; }
+        public required string ServiceDescription { get; set; }
         public int DurationInMinutes { get; set; }
     }
 }

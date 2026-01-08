@@ -15,6 +15,7 @@ namespace OnlineMedicalAppointmentSystem.Repositories
 
         public async Task<Guid> CreateService(Service service)
         {
+            //do a try catch block
             await _context.Services.AddAsync(service);
             await _context.SaveChangesAsync();
             return service.ServiceId;

@@ -25,12 +25,14 @@ namespace OnlineMedicalAppointmentSystem.Services
             var dto = new ServiceCreateDto()
             {
                 ServiceName = serviceCreate.ServiceName,
+                ServiceDescription = serviceCreate.ServiceDescription,
                 DurationInMinutes = serviceCreate.DurationInMinutes
             };
             var newService = new Service()
             {
                 ServiceId = Guid.NewGuid(),
                 ServiceName = dto.ServiceName,
+                ServiceDescription = dto.ServiceDescription,
                 DurationInMinutes = dto.DurationInMinutes ?? 30
             };
             return await _serviceRepository.CreateService(newService);
@@ -48,6 +50,7 @@ namespace OnlineMedicalAppointmentSystem.Services
             {
                 ServiceId = service.ServiceId,
                 ServiceName = service.ServiceName,
+                ServiceDescription = service.ServiceDescription,
                 DurationInMinutes = service.DurationInMinutes
             };
             return dto;
@@ -65,6 +68,7 @@ namespace OnlineMedicalAppointmentSystem.Services
             {
                 ServiceId = service.ServiceId,
                 ServiceName = service.ServiceName,
+                ServiceDescription = service.ServiceDescription,
                 DurationInMinutes = service.DurationInMinutes
             };
             return dto;
@@ -80,6 +84,7 @@ namespace OnlineMedicalAppointmentSystem.Services
                 {
                     ServiceId = service.ServiceId,
                     ServiceName = service.ServiceName,
+                    ServiceDescription = service.ServiceDescription,
                     DurationInMinutes = service.DurationInMinutes
                 });
             };

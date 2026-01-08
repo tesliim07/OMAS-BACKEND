@@ -7,6 +7,7 @@ namespace Medical_Appointment_System.Models
         [Key]
         public Guid ServiceId { get; set; }
         public required string ServiceName { get; set; }
+        public required string ServiceDescription { get; set; }
         public int DurationInMinutes { get; set; } = 30;
 
         // 1 service can have many availability slots

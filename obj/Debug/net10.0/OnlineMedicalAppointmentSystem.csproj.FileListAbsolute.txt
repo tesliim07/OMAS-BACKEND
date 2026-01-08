@@ -177,8 +177,8 @@ C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedical
 C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\obj\Debug\net10.0\OnlineMedicalAppointmentSystem.pdb
 C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\obj\Debug\net10.0\OnlineMedicalAppointmentSystem.genruntimeconfig.cache
 C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\obj\Debug\net10.0\ref\OnlineMedicalAppointmentSystem.dll
-C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\obj\Debug\net10.0\OnlineMedicalAppointmentSystem.sourcelink.json
+C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
