@@ -181,3 +181,4 @@ C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedical
 C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\HASSAN TESLIM\source\repos\OnlineMedicalAppointmentSystem\OnlineMedicalAppointmentSystem\obj\Debug\net10.0\OnlineMedicalAppointmentSystem.sourcelink.json
