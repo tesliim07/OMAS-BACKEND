@@ -1,0 +1,303 @@
+[
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.AppointmentController",
+    "Method": "CreateAppointment",
+    "RelativePath": "api/Appointment/createAppointment/{serviceName}/{availabilitySlotId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serviceName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "availabilitySlotId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "appointmentCreate",
+        "Type": "OnlineMedicalAppointmentSystem.Models.Dtos.AppointmentCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Guid",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.AppointmentController",
+    "Method": "DeleteAppointment",
+    "RelativePath": "api/Appointment/deleteAppointment/{appointmentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "appointmentId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.AppointmentController",
+    "Method": "GetAllAppointmentsByDate",
+    "RelativePath": "api/Appointment/getAllAppointmentsByDate/{dateSelected}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dateSelected",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[OnlineMedicalAppointmentSystem.Models.Dtos.AppointmentReadDto, OnlineMedicalAppointmentSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.AvailabilitySlotController",
+    "Method": "CreateAvailabilitySlots",
+    "RelativePath": "api/AvailabilitySlot/createAvailabilitySlots/{serviceId}/{startRange}/{endRange}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serviceId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "startRange",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "endRange",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Guid, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.AvailabilitySlotController",
+    "Method": "DeleteAvailabilitySlot",
+    "RelativePath": "api/AvailabilitySlot/deleteAvailabilitySlot/{availabilitySlotId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "availabilitySlotId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.AvailabilitySlotController",
+    "Method": "GetAllAvailabilitySlotsByDateAndServiceName",
+    "RelativePath": "api/AvailabilitySlot/getAllAvailabilitySlotsByDateAndServiceName/{dateSelected}/{serviceName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dateSelected",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "serviceName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[OnlineMedicalAppointmentSystem.Models.Dtos.AvailabilitySlotReadDto, OnlineMedicalAppointmentSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.AvailabilitySlotController",
+    "Method": "GetAvailabilitySlotById",
+    "RelativePath": "api/AvailabilitySlot/getAvailabilitySlotById/{availabilitySlotId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "availabilitySlotId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "OnlineMedicalAppointmentSystem.Models.Dtos.AvailabilitySlotReadDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.ServiceController",
+    "Method": "CreateService",
+    "RelativePath": "api/Service/createService",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serviceCreate",
+        "Type": "OnlineMedicalAppointmentSystem.Models.Dtos.ServiceCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Guid",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.ServiceController",
+    "Method": "DeleteService",
+    "RelativePath": "api/Service/deleteService/{serviceId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serviceId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.ServiceController",
+    "Method": "GetAllServices",
+    "RelativePath": "api/Service/getAllServices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[OnlineMedicalAppointmentSystem.Models.Dtos.ServiceReadDto, OnlineMedicalAppointmentSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.ServiceController",
+    "Method": "GetServiceById",
+    "RelativePath": "api/Service/getServiceById/{serviceId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serviceId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "OnlineMedicalAppointmentSystem.Models.Dtos.ServiceReadDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.ServiceController",
+    "Method": "GetServiceByName",
+    "RelativePath": "api/Service/getServiceByName/{serviceName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serviceName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "OnlineMedicalAppointmentSystem.Models.Dtos.ServiceReadDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
