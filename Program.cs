@@ -58,7 +58,7 @@ app.UseHangfireDashboard("/hangfire");
 RecurringJob.AddOrUpdate<IAppointmentService>(
     "find_email_addresses",                    // Job ID
     s => s.SendAppointmentReminder(3),              // Method to run
-    Cron.Daily(11));                                   // Schedule: every day
+    Cron.Daily(7));                                   // Schedule: every day
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
