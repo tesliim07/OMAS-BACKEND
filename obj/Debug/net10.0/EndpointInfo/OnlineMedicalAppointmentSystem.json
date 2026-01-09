@@ -549,10 +549,6 @@
           "patientEmail": {
             "type": "string",
             "nullable": true
-          },
-          "appointmentDateTime": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false

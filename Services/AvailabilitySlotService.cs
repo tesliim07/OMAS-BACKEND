@@ -30,17 +30,20 @@ namespace OnlineMedicalAppointmentSystem.Services
             var timeRange = endRange - startRange;
             while (startRange.AddMinutes(service.DurationInMinutes) <= endRange)
             {
-                var newSlot = new AvailabilitySlot
+                var slot = await _availabilitySlotRepository.GetAvailabilitySlotByDate(startRange);
+                if (slot == null)
                 {
-                    AvailabilitySlotId = Guid.NewGuid(),
-                    SlotStartTime = startRange,
-                    SlotEndTime = startRange.AddMinutes(service.DurationInMinutes),
-                    IsBooked = false,
-                    ServiceId = service.ServiceId
-                };
-                var slotId = await _availabilitySlotRepository.CreateAvailabilitySlot(newSlot);
-                createdSlotIds.Add(slotId);
-
+                    var newSlot = new AvailabilitySlot
+                    {
+                        AvailabilitySlotId = Guid.NewGuid(),
+                        SlotStartTime = startRange,
+                        SlotEndTime = startRange.AddMinutes(service.DurationInMinutes),
+                        IsBooked = false,
+                        ServiceId = service.ServiceId
+                    };
+                    var slotId = await _availabilitySlotRepository.CreateAvailabilitySlot(newSlot);
+                    createdSlotIds.Add(slotId);
+                }
                 startRange = startRange.AddMinutes(service.DurationInMinutes);
             }
             return createdSlotIds;
@@ -60,6 +63,25 @@ namespace OnlineMedicalAppointmentSystem.Services
                 SlotStartTime = slot.SlotStartTime,
                 SlotEndTime = slot.SlotEndTime,
                 IsBooked = slot.IsBooked
+            };
+            return dto;
+        }
+
+        public async Task<AvailabilitySlotWithServiceIdReadDto> GetAvailabilitySlotWithServiceIdById(Guid availabilitySlotId)
+        {
+            var slot = await _availabilitySlotRepository.GetAvailabilitySlotById(availabilitySlotId);
+            if (slot == null)
+            {
+                _logger.LogError($"[AvailabilitySlotService] Availability Slot with ID {availabilitySlotId} not found.");
+                return null;
+            }
+            var dto = new AvailabilitySlotWithServiceIdReadDto
+            {
+                AvailabilitySlotId = slot.AvailabilitySlotId,
+                SlotStartTime = slot.SlotStartTime,
+                SlotEndTime = slot.SlotEndTime,
+                IsBooked = slot.IsBooked,
+                ServiceId = slot.ServiceId
             };
             return dto;
         }

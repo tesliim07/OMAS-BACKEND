@@ -4,8 +4,19 @@ using OnlineMedicalAppointmentSystem.Repositories.Interfaces;
 using OnlineMedicalAppointmentSystem.Repositories;
 using OnlineMedicalAppointmentSystem.Services.Interfaces;
 using OnlineMedicalAppointmentSystem.Services;
+using Hangfire;
+using Hangfire.PostgreSql;
 
 var builder = WebApplication.CreateBuilder(args);
+//Hangfire configuration
+builder.Services.AddHangfire(config => config.UsePostgreSqlStorage(
+    options =>
+    {
+
+        options.UseNpgsqlConnection(builder.Configuration.GetConnectionString("DefaultConnection"));
+    }
+    ));
+builder.Services.AddHangfireServer();
 //Database Connection and Dependency Injection
 builder.Services.AddDbContext<MedicalAppointmentSystemDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -15,6 +26,7 @@ builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IServiceServices, ServiceServices>();
 builder.Services.AddScoped<IAvailabilitySlotService, AvailabilitySlotService>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 // Add services to the container.
 
@@ -38,6 +50,15 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 app.UseCors("dev");
+
+// Enable Hangfire Dashboard
+app.UseHangfireDashboard("/hangfire");
+
+//Create recurring job (once app starts)
+RecurringJob.AddOrUpdate<IAppointmentService>(
+    "find_email_addresses",                    // Job ID
+    s => s.SendAppointmentReminder(3),              // Method to run
+    Cron.Daily(11));                                   // Schedule: every day
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

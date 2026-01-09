@@ -5,7 +5,6 @@
         public required string PatientFirstName { get; set; }
         public required string PatientLastName { get; set; }
         public string? PatientEmail { get; set; }
-        public DateTime AppointmentDateTime { get; set; }
     }
 
     public class AppointmentReadDto

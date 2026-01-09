@@ -36,6 +36,11 @@ namespace OnlineMedicalAppointmentSystem.Repositories
             return appointments;
         }
 
+        public async Task<List<Appointment>> GetAllAppointments()
+        {
+            return await _context.Appointments.ToListAsync();
+        }
+
         //public async Task<bool> RescheduleAppointment(Guid appointmentId, DateTime newDateTime)
         //{
         //    var appointment = await _context.Appointments.FindAsync(appointmentId);
