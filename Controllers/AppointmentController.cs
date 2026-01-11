@@ -34,6 +34,18 @@ namespace OnlineMedicalAppointmentSystem.Controllers
             return Ok(createdAppointmentId);
         }
 
+        [HttpGet("getAppointmentById/{appointmentId:guid}")]
+        public async Task<ActionResult<AppointmentReadDto>> GetAppointmentById(Guid appointmentId)
+        {
+            var appointment = await _appointmentService.GetAppointmentById(appointmentId);
+            if (appointment == null)
+            {
+                _logger.LogError("[AppointmentController] No appointment found with ID: {AppointmentId}", appointmentId);
+                return NotFound();
+            }
+            return Ok(appointment);
+        }
+
         [HttpGet("getAllAppointmentsByDate/{dateSelected:datetime}")]
         public async Task<ActionResult<List<AppointmentReadDto>>> GetAllAppointmentsByDate(DateTime dateSelected)
         {
@@ -44,6 +56,20 @@ namespace OnlineMedicalAppointmentSystem.Controllers
             }
             return Ok(appointments);
         }
+
+        [HttpGet("sendAppointmentConfirmation/{appointmentId:guid}")]
+        public async Task<ActionResult<bool>> SendAppointmentConfirmation(Guid appointmentId)
+        {
+            var isSent = await _appointmentService.SendAppointmentConfirmation(appointmentId);
+            if (!isSent)
+            {
+                _logger.LogError("[AppointmentController] Failed to send appointment confirmation for ID: {AppointmentId}", appointmentId);
+                return StatusCode(500, "Failed to send confirmation.");
+            }
+            return Ok(isSent);
+        }
+
+
         [HttpDelete("deleteAppointment/{appointmentId:guid}")]
         public async Task<ActionResult> DeleteAppointment(Guid appointmentId)
         {

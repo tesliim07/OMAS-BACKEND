@@ -1,6 +1,5 @@
 ﻿using Medical_Appointment_System.Models;
 using OnlineMedicalAppointmentSystem.Models.Dtos;
-using OnlineMedicalAppointmentSystem.Repositories;
 using OnlineMedicalAppointmentSystem.Repositories.Interfaces;
 using OnlineMedicalAppointmentSystem.Services.Interfaces;
 using System.Text;
@@ -63,6 +62,26 @@ namespace OnlineMedicalAppointmentSystem.Services
             return appointmentId;
         }
 
+        public async Task<AppointmentReadDto> GetAppointmentById(Guid appointmentId)
+        {
+            var appointment = await _appointmentRepository.GetAppointmentById(appointmentId);
+            if (appointment == null)
+            {
+                _logger.LogError($"[AppointmentService] Appointment with ID {appointmentId} not found.");
+                return null;
+            }
+            var dto = new AppointmentReadDto
+            {
+                AppointmentId = appointment.AppointmentId,
+                PatientFirstName = appointment.PatientFirstName,
+                PatientLastName = appointment.PatientLastName,
+                PatientEmail = appointment.PatientEmail,
+                AppointmentDateTime = appointment.AppointmentDateTime,
+                AppointmentBookedStatus = appointment.AppointmentBookedStatus
+            };
+            return dto;
+        }
+
         public async Task<List<AppointmentReadDto>> GetAllAppointmentsByDate(DateTime dateSelected)
         {
             var appointments = await _appointmentRepository.GetAllAppointmentsByDate(dateSelected);
@@ -95,6 +114,29 @@ namespace OnlineMedicalAppointmentSystem.Services
             return isDeleted;
         }
 
+        public async Task<bool> SendAppointmentConfirmation(Guid appointmentId)
+        {
+            var appointment = await _appointmentRepository.GetAppointmentById(appointmentId);
+            
+            if (!String.IsNullOrEmpty(appointment.PatientEmail))
+            {
+                var service = await _serviceService.GetServiceById(appointment.ServiceId);
+                if (!String.IsNullOrEmpty(appointment.PatientEmail))
+                {
+                    var subject = "Appointment Confirmation";
+                    var to = appointment.PatientEmail;
+                    var messageBuilt = new StringBuilder();
+                    messageBuilt.AppendLine($"<h1>Dear {appointment.PatientFirstName} {appointment.PatientLastName}, </h1>");
+                    messageBuilt.AppendLine($"<p>This is a confirmation that you have a {service.ServiceName} appointment scheduled on {appointment.AppointmentDateTime}.</p>");
+                    _logger.LogInformation($"[AppointmentService] Sending appointment confirmation for appointment id, {appointment.AppointmentId}.");
+                    var htmlbody = messageBuilt.ToString();
+                    var isSent = await SendEmail(to, subject, htmlbody);
+                    return isSent;
+                }
+            }
+            return false;
+        }
+
         public async Task SendAppointmentReminder(int daysToAppointment)
         {
             var appointments = await _appointmentRepository.GetAllAppointments();
@@ -108,7 +150,6 @@ namespace OnlineMedicalAppointmentSystem.Services
                     var messageBuilt = new StringBuilder();
                     messageBuilt.AppendLine($"<h1>Dear {appointment.PatientFirstName} {appointment.PatientLastName}, </h1>");
                     messageBuilt.AppendLine($"<p>This is a reminder that you have a {service.ServiceName} appointment scheduled on {appointment.AppointmentDateTime}.</p>");
-                    // Placeholder for sending reminders logic
                     _logger.LogInformation($"[AppointmentService] Sending appointment reminders  for appointments in {daysToAppointment} days.");
                     var htmlbody = messageBuilt.ToString();
                     await SendEmail(to, subject, htmlbody);
@@ -119,8 +160,8 @@ namespace OnlineMedicalAppointmentSystem.Services
 
         public async Task<bool> SendEmail(string to, string subject, string htmlBody)
         {
-            var saveItEmail = await _emailService.SendEmail(to, subject, htmlBody);
-            return saveItEmail;
+            var omasEmail = await _emailService.SendEmail(to, subject, htmlBody);
+            return omasEmail;
         }
     }
 }

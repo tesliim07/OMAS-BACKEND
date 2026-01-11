@@ -5,6 +5,7 @@ namespace OnlineMedicalAppointmentSystem.Repositories.Interfaces
     public interface IAppointmentRepository
     {
         public Task<Guid> CreateAppointment(Appointment appointment);
+        public Task<Appointment> GetAppointmentById(Guid appointmentId);
         public Task<List<Appointment>> GetAllAppointmentsByDate(DateTime dateSelected);
         public Task<List<Appointment>> GetAllAppointments();
         //public Task<bool> RescheduleAppointment(Guid appointmentId, DateTime newDateTime);

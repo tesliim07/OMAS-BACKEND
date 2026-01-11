@@ -78,6 +78,58 @@
     ]
   },
   {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.AppointmentController",
+    "Method": "GetAppointmentById",
+    "RelativePath": "api/Appointment/getAppointmentById/{appointmentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "appointmentId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "OnlineMedicalAppointmentSystem.Models.Dtos.AppointmentReadDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.AppointmentController",
+    "Method": "SendAppointmentConfirmation",
+    "RelativePath": "api/Appointment/sendAppointmentConfirmation/{appointmentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "appointmentId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "OnlineMedicalAppointmentSystem.Controllers.AvailabilitySlotController",
     "Method": "CreateAvailabilitySlots",
     "RelativePath": "api/AvailabilitySlot/createAvailabilitySlots/{serviceId}/{startRange}/{endRange}",
