@@ -30,7 +30,7 @@ namespace OnlineMedicalAppointmentSystem.Services
             var timeRange = endRange - startRange;
             while (startRange.AddMinutes(service.DurationInMinutes) <= endRange)
             {
-                var slot = await _availabilitySlotRepository.GetAvailabilitySlotByDate(startRange);
+                var slot = await _availabilitySlotRepository.GetAvailabilitySlotByDate(startRange, service.DurationInMinutes);
                 if (slot == null)
                 {
                     var newSlot = new AvailabilitySlot

@@ -30,10 +30,12 @@ namespace OnlineMedicalAppointmentSystem.Repositories
             return null;
         }
 
-        public async Task<AvailabilitySlot> GetAvailabilitySlotByDate(DateTime dateTime)
+        public async Task<AvailabilitySlot> GetAvailabilitySlotByDate(DateTime dateTime, int duration)
         {
+            var window = TimeSpan.FromMinutes(duration - 1);
             var availabiltySlot = await _context.AvailabilitySlots.
-                FirstOrDefaultAsync(slot => slot.SlotStartTime == dateTime);
+                //FirstOrDefaultAsync(slot => slot.SlotStartTime == dateTime);
+                FirstOrDefaultAsync(slot => slot.SlotStartTime >= dateTime - window && slot.SlotStartTime <= dateTime + window);
             if (availabiltySlot != null)
             {
                 return availabiltySlot;
