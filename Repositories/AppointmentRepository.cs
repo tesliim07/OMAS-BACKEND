@@ -41,6 +41,15 @@ namespace OnlineMedicalAppointmentSystem.Repositories
             return appointments;
         }
 
+        public async Task<List<Appointment>> GetAllPendingAppointments(int daysToAppointment)
+        {
+            var todaysDate = DateTime.Today;
+            var pendingAppointments = await _context.Appointments
+                .Where(a => a.AppointmentDateTime.Date > todaysDate && a.AppointmentDateTime.Date <= todaysDate.AddDays(daysToAppointment))
+                .ToListAsync();
+            return pendingAppointments;
+        }
+
         public async Task<List<Appointment>> GetAllAppointments()
         {
             return await _context.Appointments.ToListAsync();

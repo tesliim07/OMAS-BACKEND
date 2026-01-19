@@ -19,7 +19,7 @@ builder.Services.AddHangfire(config => config.UsePostgreSqlStorage(
 builder.Services.AddHangfireServer();
 //Database Connection and Dependency Injection
 builder.Services.AddDbContext<MedicalAppointmentSystemDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PooledConnection")));
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IAvailabilitySlotRepository, AvailabilitySlotRepository>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();

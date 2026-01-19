@@ -139,8 +139,8 @@ namespace OnlineMedicalAppointmentSystem.Services
 
         public async Task SendAppointmentReminder(int daysToAppointment)
         {
-            var appointments = await _appointmentRepository.GetAllAppointments();
-            foreach (var appointment in appointments)
+            var pendingAppointments = await _appointmentRepository.GetAllPendingAppointments(daysToAppointment);
+            foreach (var appointment in pendingAppointments)
             {
                 var service = await _serviceService.GetServiceById(appointment.ServiceId);
                 if (!String.IsNullOrEmpty(appointment.PatientEmail))
