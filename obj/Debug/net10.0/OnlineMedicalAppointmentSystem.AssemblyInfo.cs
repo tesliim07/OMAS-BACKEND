@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnlineMedicalAppointmentSystem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec163489c2e0ffcaaa8fb7c14c7dc62b5fbc6f49")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21d652f1a9373c2d0c1bcb9a0ab69f8d5293a89e")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnlineMedicalAppointmentSystem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnlineMedicalAppointmentSystem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
