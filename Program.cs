@@ -50,7 +50,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("dev", policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173", "https://omas-frontend-b7fyf.ondigitalocean.app/")
+            .WithOrigins("http://localhost:5173", "https://omas-frontend-b7fyf.ondigitalocean.app")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
