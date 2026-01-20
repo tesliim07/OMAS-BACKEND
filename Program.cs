@@ -8,18 +8,27 @@ using Hangfire;
 using Hangfire.PostgreSql;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var defaultConn = builder.Configuration.GetConnectionString("DefaultConnection");
+var pooledConn = builder.Configuration.GetConnectionString("PooledConnection");
+
+Console.WriteLine("=== CONNECTION STRING DEBUG ===");
+Console.WriteLine($"DefaultConnection: {defaultConn}");
+Console.WriteLine($"PooledConnection: {pooledConn}");
+Console.WriteLine("================================");
+
 //Hangfire configuration
 builder.Services.AddHangfire(config => config.UsePostgreSqlStorage(
     options =>
     {
 
-        options.UseNpgsqlConnection(builder.Configuration.GetConnectionString("DefaultConnection"));
+        options.UseNpgsqlConnection(defaultConn);
     }
     ));
 builder.Services.AddHangfireServer();
 //Database Connection and Dependency Injection
 builder.Services.AddDbContext<MedicalAppointmentSystemDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("PooledConnection")));
+    options.UseNpgsql(pooledConn));
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IAvailabilitySlotRepository, AvailabilitySlotRepository>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
