@@ -63,11 +63,22 @@ app.UseCors("dev");
 // Enable Hangfire Dashboard
 app.UseHangfireDashboard("/hangfire");
 
+// Register recurring job in a background task to avoid startup lock issues
+Task.Run(async () =>
+{
+    await Task.Delay(5000); // Wait 5 seconds for app to fully start
+    RecurringJob.AddOrUpdate<IAppointmentService>(
+        "find_email_addresses",
+        s => s.SendAppointmentReminder(3),
+        Cron.Daily(7)
+    );
+});
+
 //Create recurring job (once app starts)
-RecurringJob.AddOrUpdate<IAppointmentService>(
-    "find_email_addresses",                    // Job ID
-    s => s.SendAppointmentReminder(3),              // Method to run
-    Cron.Daily(7));                                   // Schedule: every day
+//RecurringJob.AddOrUpdate<IAppointmentService>(
+//    "find_email_addresses",                    // Job ID
+//    s => s.SendAppointmentReminder(3),              // Method to run
+//    Cron.Daily(7));                                   // Schedule: every day
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
