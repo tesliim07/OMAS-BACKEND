@@ -18,14 +18,14 @@ Console.WriteLine($"PooledConnection: {pooledConn}");
 Console.WriteLine("================================");
 
 //Hangfire configuration
-builder.Services.AddHangfire(config => config.UsePostgreSqlStorage(
-    options =>
-    {
+//builder.Services.AddHangfire(config => config.UsePostgreSqlStorage(
+//    options =>
+//    {
 
-        options.UseNpgsqlConnection(pooledConn);
-    }
-    ));
-builder.Services.AddHangfireServer();
+//        options.UseNpgsqlConnection(pooledConn);
+//    }
+//    ));
+//builder.Services.AddHangfireServer();
 //Database Connection and Dependency Injection
 builder.Services.AddDbContext<MedicalAppointmentSystemDbContext>(options =>
     options.UseNpgsql(pooledConn));
@@ -61,18 +61,18 @@ var app = builder.Build();
 app.UseCors("dev");
 
 // Enable Hangfire Dashboard
-app.UseHangfireDashboard("/hangfire");
+//app.UseHangfireDashboard("/hangfire");
 
 // Register recurring job in a background task to avoid startup lock issues
-Task.Run(async () =>
-{
-    await Task.Delay(5000); // Wait 5 seconds for app to fully start
-    RecurringJob.AddOrUpdate<IAppointmentService>(
-        "find_email_addresses",
-        s => s.SendAppointmentReminder(3),
-        Cron.Daily(7)
-    );
-});
+//Task.Run(async () =>
+//{
+//    await Task.Delay(5000); // Wait 5 seconds for app to fully start
+//    RecurringJob.AddOrUpdate<IAppointmentService>(
+//        "find_email_addresses",
+//        s => s.SendAppointmentReminder(3),
+//        Cron.Daily(7)
+//    );
+//});
 
 //Create recurring job (once app starts)
 //RecurringJob.AddOrUpdate<IAppointmentService>(
