@@ -22,7 +22,7 @@ builder.Services.AddHangfire(config => config.UsePostgreSqlStorage(
     options =>
     {
 
-        options.UseNpgsqlConnection(defaultConn);
+        options.UseNpgsqlConnection(pooledConn);
     }
     ));
 builder.Services.AddHangfireServer();
